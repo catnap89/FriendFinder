@@ -48,6 +48,7 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">Your mind is always buzzing with unexplored ideas and plans.</label>
             <select class="form-control" id="q1">
+              <option></option>
               <option>1 (strongly disagree)</option>
               <option>2</option>
               <option>3</option>
@@ -68,6 +69,7 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">Generally speaking, you rely more on your experience than your imagination.</label>
             <select class="form-control" id="q2">
+              <option></option>
               <option>1 (strongly disagree)</option>
               <option>2</option>
               <option>3</option>
@@ -88,6 +90,7 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">You find it easy to stay relaxed and focused even when there is some pressure.</label>
             <select class="form-control" id="q3">
+              <option></option>
               <option>1 (strongly disagree)</option>
               <option>2</option>
               <option>3</option>
@@ -108,6 +111,7 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">You rarely do something just out of sheer curiosity.</label>
             <select class="form-control" id="q4">
+              <option></option>
               <option>1 (strongly disagree)</option>
               <option>2</option>
               <option>3</option>
@@ -128,6 +132,7 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">People can rarely upset you.</label>
             <select class="form-control" id="q5">
+              <option></option>
               <option>1 (strongly disagree)</option>
               <option>2</option>
               <option>3</option>
@@ -148,6 +153,7 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">It is often difficult for you to relate to other people’s feelings.</label>
             <select class="form-control" id="q6">
+              <option></option>
               <option>1 (strongly disagree)</option>
               <option>2</option>
               <option>3</option>
@@ -168,6 +174,7 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">In a discussion, truth should be more important than people’s sensitivities.</label>
             <select class="form-control" id="q7">
+              <option></option>
               <option>1 (strongly disagree)</option>
               <option>2</option>
               <option>3</option>
@@ -188,6 +195,7 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">You rarely get carried away by fantasies and ideas.</label>
             <select class="form-control" id="q8">
+              <option></option>
               <option>1 (strongly disagree)</option>
               <option>2</option>
               <option>3</option>
@@ -208,6 +216,7 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</label>
             <select class="form-control" id="q9">
+              <option></option>
               <option>1 (strongly disagree)</option>
               <option>2</option>
               <option>3</option>
@@ -228,6 +237,7 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">You feel more energetic after spending time with a group of people.</label>
             <select class="form-control" id="q10">
+              <option></option>
               <option>1 (strongly disagree)</option>
               <option>2</option>
               <option>3</option>
@@ -265,7 +275,7 @@
   </div>  <!-- Container end-->
 
   <!-- Modal -->
-  <div class="modal" tabindex="-1" role="dialog">
+  <div class="modal" tabindex="-1" role="dialog" id="best-match-modal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -287,6 +297,54 @@
 
   <!-- JavaScript -->
   <script type="text/javascript">
+
+    $("#submit").on("click", function(event) {
+      event.preventDefault();
+      // form validation
+      function formValidation() {
+        var isValid = true;
+        $(".form-control").each(function() {
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        })
+        return isValid;
+      }
+      // if all required fields are filled
+      if (formValidation()) {
+        // create an object for user's data
+        var userData = {
+          name: $("#name").val().trim(),
+          photo: $("#photo").val().trim(),
+          scores: [
+            $("#q1").val().trim(),
+            $("#q2").val().trim(),
+            $("#q3").val().trim(),
+            $("#q4").val().trim(),
+            $("#q5").val().trim(),
+            $("#q6").val().trim(),
+            $("#q7").val().trim(),
+            $("#q8").val().trim(),
+            $("#q9").val().trim(),
+            $("#q10").val().trim()
+          ]
+        };
+        // AJAX post the data to the friends API
+        $.post("/api/friends", userData, function(data) {
+          // grab the result from the AJAX post so that the best match's name and photo are displayed
+          $("#match-name").text(data.name);
+          $("#match-img").attr("src", data.photo);
+
+          // show the modal with the best match
+          $("#best-match-modal").modal("toggle");
+        })
+
+      } else {
+        alert("Please answer every questions before submitting!");
+      }
+
+    })
+
   </script>
 
 </body>
