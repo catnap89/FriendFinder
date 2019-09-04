@@ -7,9 +7,9 @@
 
 var userArray = [
   {
-    name: "Daniel",
-    photo: "https://prd-wret.s3-us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/full_width/public/thumbnails/image/placeholder-profile_3.png",
-    scores: [1,1,1,1,1,1,1,1,1,1]
+    name: "Emma",
+    photo: "https://cdn.britannica.com/78/194178-050-7ABF2B15/Emma-Stone-La-Land-Damien-Chazelle.jpg",
+    scores: [2,4,1,3,5,1,2,4,5,1]
   }
 ];
 
