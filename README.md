@@ -15,10 +15,10 @@
 To use our web service, go to our [Website](https://pure-brook-27719.herokuapp.com/) and take our 10 question survey. After submitting the survey, your perfect best friend will pop up. Also, link to our API is provided at the bottom of the website so that you can access to the network's users and their personalized information for research purposes.
 
 ### Homepage
-![Screen shot](app/public/images/homepage_screenshot.png)
+![Screen shot](app/public/images/ff_homepage_screenshot.png)
 Index Page
 ### Survey 
-![Screen shot](app/public/images/survey_screenshot.png)
+![Screen shot](app/public/images/ff_survey_screenshot.png)
 Index Page
 
 ## How the App Works
@@ -33,7 +33,7 @@ Index Page
 {
 	name: "Emma",
 	photo: "https://cdn.britannica.com/78/194178-050-7ABF2B15/Emma-Stone-La-Land-Damien-Chazelle.jpg",
-	scores: [5, 1, 2, 3, 1, 2, 5, 1, 1, 1]
+	scores: [2, 4, 1, 3, 5, 1, 2, 4, 5, 1]
 }
 ```
 

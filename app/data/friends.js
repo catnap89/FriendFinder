@@ -9,7 +9,7 @@ var userArray = [
   {
     name: "Emma",
     photo: "https://cdn.britannica.com/78/194178-050-7ABF2B15/Emma-Stone-La-Land-Damien-Chazelle.jpg",
-    scores: [2,4,1,3,5,1,2,4,5,1]
+    scores: [2, 4, 1, 3, 5, 1, 2, 4, 5, 1]
   }
 ];
 
